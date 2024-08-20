@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Nanum+Gothic+Coding&display=swap");
+
+* {
+	margin: 0px;
+	box-sizing: border-box;
+	font-family: "Lato", sans-serif;
+	color: white;
+}
+
+html {
+	background: rgb(27, 36, 80);
+	background-position: fixed;
+}
+
+#content {
+	width: 80%;
+	margin: auto;
+	padding: 0rem 2rem;
+}
+
+nav {
+	width: fit-content;
+
+	position: fixed;
+	top: 40%;
+	right: 10rem;
+	font-size: 1.6rem;
+}
+nav ul {
+	display: flex;
+	flex-direction: column;
+	gap: 1.2rem;
+}
+
+nav ul li {
+	background: rgba(0, 0, 0, 0.3);
+	list-style-type: none;
+	padding: 0.5rem;
+	border-radius: 0.5rem;
+}
+
+nav ul li a {
+	text-decoration: none;
+}
+
+#socials {
+	display: flex;
+	flex-direction: column;
+	position: fixed;
+	bottom: 0px;
+	margin: 1rem;
+	font-size: 4rem;
+}
+
+#socials a,
+#socials a:visited {
+	color: white;
+}
+
+#about {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#about * {
+	text-align: left;
+}
+
+h1 {
+	font-size: 5rem;
+	font-family: "DM Serif Text", serif;
+	text-align: center;
+	font-weight: 100;
+}
+
+#about h1 {
+	font-size: 7rem;
+}
+
+h2,
+h3 {
+	font-family: "Nanum Gothic Coding", monospace;
+}
+
+h2 {
+	font-size: 3rem;
+}
+
+h3 {
+	font-size: 2rem;
+}
+
+p {
+	font-size: 1.5rem;
+}
+
+.container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+
+	margin: auto;
+	text-align: center;
+
+	gap: 0.5rem;
+	--items: 3;
+}
+
+.container div {
+	width: calc((100% - 0.5rem * (var(--items) - 1)) / var(--items));
+}
+
+#portfolio .container {
+	width: 80%;
+	--items: 4;
+}
+
+#skills .container {
+	width: 60%;
+}
+
+#skills .container div {
+	padding: 1rem;
+	aspect-ratio: 2/1;
+	background: gray;
+}
+
+#skills .container div i {
+	font-size: 5rem;
+}
+
+#skills .container div p {
+	font-size: 4rem;
+	height: 5rem;
+}
+
+#HTML i {
+	color: orange;
+}
+
+#CSS i {
+	color: blue;
+}
+
+#JS i {
+	color: yellow;
+}
+
+#python i {
+	color: violet;
+}
+
+section {
+	height: 100vh;
+}
