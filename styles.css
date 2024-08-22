@@ -23,19 +23,22 @@ html {
 
 section {
 	height: 100vh;
-	padding: 0rem 10vw;
+	padding: 0rem 10%;
 	scroll-snap-align: start;
 	scroll-snap-stop: always;
 }
 
 nav {
-	width: fit-content;
+	min-width: fit-content;
+	max-width: 10%;
 
 	position: fixed;
 	top: 40%;
 	right: 6rem;
 	font-size: 1.6rem;
+	display: none;
 }
+
 nav ol {
 	display: flex;
 	flex-direction: column;
@@ -106,9 +109,12 @@ nav ol a:hover,
 
 h1 {
 	font-size: 5rem;
+	line-height: 110%;
 	font-family: "DM Serif Text", serif;
 	text-align: center;
 	font-weight: 100;
+
+	margin: 1rem 0%;
 }
 
 .title {
@@ -134,8 +140,10 @@ p {
 }
 
 .container {
+	width: 80%;
 	display: flex;
 	flex-wrap: wrap;
+	align-items: center;
 	justify-content: center;
 
 	margin: auto;
@@ -148,6 +156,7 @@ p {
 
 .container div {
 	width: calc((100% - var(--gap) * (var(--items) - 1)) / var(--items));
+	min-width: 10rem;
 	padding: 1rem;
 	background: rgba(0, 0, 0, 0.3);
 	border-radius: 0.5rem;
@@ -186,17 +195,12 @@ p {
 }
 
 #portfolio .container {
-	width: 80%;
 	--items: 4;
 	border-radius: 2rem;
 }
 
 #portfolio .container h3 {
 	font-size: 2.5rem;
-}
-
-#skills .container {
-	width: 60%;
 }
 
 #skills .container div {
@@ -226,4 +230,43 @@ p {
 
 #python i {
 	color: violet;
+}
+
+@media screen and (max-width: 576px) {
+	nav {
+		display: none;
+	}
+	section {
+		padding: 0px 5%;
+	}
+	.title {
+		font-size: 4rem;
+		padding: 2rem 0%;
+	}
+	.container {
+		width: 100%;
+		margin: none;
+	}
+	#portfolio .container {
+		padding: 0.5rem;
+	}
+	#portfolio .container h3 {
+		font-size: 1.5rem;
+	}
+	#portfolio .container p {
+		font-size: 1rem;
+	}
+	.container button {
+		width: 100%;
+		padding: 0.5rem;
+	}
+	#skills .container h3 {
+		font-size: 1.25rem;
+	}
+	#about h2 {
+		font-size: 2rem;
+	}
+	#about h1 {
+		font-size: 5rem;
+	}
 }
