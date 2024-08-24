@@ -156,7 +156,7 @@ p {
 
 .container div {
 	width: calc((100% - var(--gap) * (var(--items) - 1)) / var(--items));
-	min-width: 10rem;
+	min-width: 40%;
 	padding: 1rem;
 	background: rgba(0, 0, 0, 0.3);
 	border-radius: 0.5rem;
@@ -240,7 +240,7 @@ p {
 		padding: 0px 5%;
 	}
 	.title {
-		font-size: 4rem;
+		font-size: 3rem;
 		padding: 2rem 0%;
 	}
 	.container {
@@ -258,7 +258,8 @@ p {
 	}
 	.container button {
 		width: 100%;
-		padding: 0.5rem;
+		padding: 0.25rem;
+		font-size: 1.25rem;
 	}
 	#skills .container h3 {
 		font-size: 1.25rem;
