@@ -5,6 +5,12 @@
 		<meta name="viewport" content="width=device-width" />
 		<title>Viktor Sharha</title>
 		<link rel="stylesheet" href="styles.css" />
+
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+		/>
 	</head>
 	<body>
 		<div id="socials">
@@ -44,24 +50,35 @@
 		<section id="skills">
 			<h1 class="title">My skills</h1>
 			<div class="container">
-				<div id="HTML">
-					<i class="fa-brands fa-html5"></i>
+				<div class="card">
+					<img
+						src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"
+					/>
 					<h3>HTML</h3>
 				</div>
-				<div id="CSS">
-					<i class="fa-brands fa-css3-alt"></i>
+				<div class="card">
+					<img
+						src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg"
+					/>
 					<h3>CSS</h3>
 				</div>
-				<div id="JS">
-					<i class="fa-brands fa-js"></i>
+				<div class="card">
+					<img
+						src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"
+					/>
 					<h3>JavaScript</h3>
 				</div>
-				<div id="python">
-					<i class="fa-brands fa-python"></i>
+				<div class="card">
+					<img
+						src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original-wordmark.svg"
+					/>
+
 					<h3>Python</h3>
 				</div>
-				<div id="c++">
-					<p>C++</p>
+				<div class="card">
+					<img
+						src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg"
+					/>
 					<h3>C++</h3>
 				</div>
 			</div>
@@ -70,10 +87,11 @@
 		<section id="portfolio">
 			<h1 class="title">My portfolio</h1>
 			<div class="container">
-				<div>
+				<div class="card">
 					<img src="./img/tictactoe.png" alt="TicTacToe" />
 					<h3>TicTacToe</h3>
-					<p>My TicTacToe game</p>
+
+					<div class="desc"><p>My TicTacToe game</p></div>
 
 					<a
 						href="https://vsharha.github.io/TicTacToe/"
@@ -81,10 +99,10 @@
 						><button>Try it</button></a
 					>
 				</div>
-				<div>
+				<div class="card">
 					<img src="./img/hangman.png" alt="Hangman" />
 					<h3>Hangman</h3>
-					<p>My Hangman game</p>
+					<div class="desc"><p>My Hangman game</p></div>
 
 					<a
 						href="https://vsharha.github.io/Hangman/"
@@ -93,10 +111,10 @@
 						<button>Try it</button></a
 					>
 				</div>
-				<div>
+				<div class="card">
 					<img src="./img/calc.png" alt="Calculator" />
 					<h3>Calculator</h3>
-					<p>My Calculator app</p>
+					<div class="desc"><p>My Calculator app</p></div>
 
 					<a
 						href="https://vsharha.github.io/Calculator/"
@@ -104,10 +122,10 @@
 						><button>Try it</button></a
 					>
 				</div>
-				<div>
+				<div class="card">
 					<img src="./img/rps.png" alt="Rock, Paper, Scissors" />
 					<h3>RPS</h3>
-					<p>My RPS game</p>
+					<div class="desc"><p>My Rock, Paper, Scissors game</p></div>
 
 					<a
 						href="https://vsharha.github.io/RockPaperScissors/"
