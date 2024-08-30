@@ -29,7 +29,7 @@ section {
 }
 
 button:hover,
-nav ol a:hover,
+/* nav ol a:hover, */
 #socials #links a:hover {
 	filter: brightness(85%);
 }
@@ -138,6 +138,8 @@ p {
 	right: 0;
 
 	bottom: 0;
+	margin: auto;
+	width: fit-content;
 }
 
 #scroll-anim {
