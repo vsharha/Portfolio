@@ -172,7 +172,7 @@ p {
 	justify-content: center;
 
 	margin: auto;
-	margin-bottom: 2rem;
+	margin-bottom: 3rem;
 	text-align: center;
 
 	--gap: 1rem;
@@ -294,8 +294,8 @@ article p {
 	article p {
 		font-size: 1.25rem;
 		margin-top: 0rem;
-		padding: 0 2rem;
-		text-align: justify;
+		padding: 0 2.5rem;
+		text-align: left;
 	}
 	#about {
 		padding: 0px 5%;
