@@ -9,10 +9,10 @@
 
 html {
 	--primary: rgb(27, 36, 80);
-	--alt-primary: rgb(32, 42, 93);
-	background: var(--primary);
 	background-position: fixed;
 	scroll-behavior: smooth;
+	scroll-padding: 0;
+	scroll-margin: 0;
 }
 
 body,
@@ -22,6 +22,7 @@ html {
 }
 
 section {
+	background: linear-gradient(rgb(34, 46, 102), rgb(20, 27, 59));
 	min-height: 100vh;
 	padding: 0rem 10%;
 	scroll-snap-align: start;
@@ -100,6 +101,7 @@ h1 {
 .title {
 	padding: 3rem;
 	padding-top: 2rem;
+	margin: 0;
 
 	font-family: "Dancing Script", cursive;
 	font-weight: bolder;
@@ -164,14 +166,13 @@ p {
 }
 
 .container {
-	width: 80%;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: center;
-	padding-bottom: 4rem;
 
 	margin: auto;
+	margin-bottom: 2rem;
 	text-align: center;
 
 	--gap: 1rem;
@@ -183,11 +184,10 @@ p {
 	min-width: 12rem;
 	max-width: calc((100% - var(--gap) * (var(--items) - 1)) / var(--items));
 	padding: 1rem;
-	background: rgba(0, 0, 0, 0.3);
+	background: rgba(0, 0, 0, 0.15);
 	border-radius: 0.5rem;
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
 }
 
 .container a {
@@ -198,7 +198,7 @@ p {
 .container a button {
 	width: 100%;
 	display: block;
-	padding: 1rem;
+	padding: 0.5rem;
 	background: white;
 	font-weight: bold;
 	font-size: 1.5rem;
@@ -214,21 +214,19 @@ p {
 	box-shadow: 0.1rem 0.1rem rgba(0, 0, 0, 0.5);
 }
 
-#skills {
-	padding: 0rem 15%;
-}
-
 #skills .container {
 	--gap: 1rem;
 	--items: 5;
 }
 
 #skills .container .card {
-	aspect-ratio: 1/1;
-	padding: 2rem;
+	background: rgba(56, 65, 117, 0.61);
+	border-radius: 2.5rem;
+	padding: 1.75rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	gap: 1rem;
 }
 
 #skills .container .card img {
@@ -248,6 +246,23 @@ p {
 	border-radius: 1.2rem;
 }
 
+#portfolio .container h3 {
+	font-size: 2.5rem;
+}
+
+#portfolio .container img {
+	aspect-ratio: 3/2;
+	border-radius: 1rem;
+	margin-bottom: 0.75rem;
+}
+
+#portfolio .container .date {
+	padding: 0%;
+	margin: 0;
+	font-size: 1.25rem;
+	color: rgb(187, 187, 187);
+}
+
 .desc {
 	display: flex;
 	align-items: center;
@@ -255,15 +270,14 @@ p {
 	--size: 1.5rem;
 	font-size: var(--size);
 	height: calc(var(--size) * 2);
+	margin: 1rem 0rem;
 }
 
-#portfolio .container img {
-	aspect-ratio: 3/2;
-	border-radius: 1rem;
-}
-
-#portfolio .container h3 {
-	font-size: 2.5rem;
+article p {
+	font-size: 1.75rem;
+	margin-top: 2rem;
+	padding: 0 10%;
+	text-align: center;
 }
 
 @media screen and (max-width: 576px) {
@@ -272,40 +286,40 @@ p {
 	}
 	section {
 		padding: 0;
+		padding-bottom: 7rem;
+	}
+	article {
+		margin-top: 1rem;
+	}
+	article p {
+		font-size: 1.25rem;
+		margin-top: 0rem;
+		padding: 0 2rem;
+		text-align: justify;
 	}
 	#about {
 		padding: 0px 5%;
 	}
 	.title {
-		font-size: 4.5rem;
+		font-size: 3.5rem;
 		padding: 2rem 0%;
 		margin-bottom: 0;
 	}
-	.container {
-		padding-bottom: 8rem;
-	}
 	#pointer {
-		bottom: 1rem;
-		left: 12rem;
+		bottom: 1.5rem;
+		left: 11.5rem;
 	}
 	#pointer p {
-		font-size: 2.25rem;
+		font-size: 2.2rem;
 	}
 	#pointer i {
-		font-size: 1.75rem;
+		font-size: 1.5rem;
 		rotate: 190deg;
 	}
-	#portfolio .container {
-		--gap: 0.5rem;
-	}
+
 	.container {
 		width: 100%;
-	}
-	#portfolio .container h3 {
-		font-size: 1.5rem;
-	}
-	#portfolio .container p {
-		font-size: 1rem;
+		margin-bottom: 1.5rem;
 	}
 	.container a {
 		width: 100%;
@@ -314,9 +328,26 @@ p {
 		padding: 0.25rem;
 		font-size: 1.25rem;
 	}
-	#skills {
-		padding: 0;
+	.container .card {
+		min-width: 10rem;
 	}
+
+	#portfolio .container {
+		--gap: 0.5rem;
+	}
+	#portfolio .container .date {
+		font-size: 0.75rem;
+	}
+	#portfolio .container h3 {
+		font-size: 1.5rem;
+	}
+	.desc {
+		margin: 0.5rem 0rem;
+	}
+	.desc * {
+		font-size: 1rem;
+	}
+
 	#skills .container {
 		--gap: 0.5rem;
 	}
@@ -330,6 +361,7 @@ p {
 	#skills .container .card h3 {
 		font-size: 1.5rem;
 	}
+
 	#about {
 		justify-content: left;
 		padding-top: 40%;
@@ -340,6 +372,7 @@ p {
 	#about h1 {
 		font-size: 5rem;
 	}
+
 	#socials #links {
 		flex-direction: row;
 		gap: 1rem;
@@ -348,15 +381,13 @@ p {
 		left: 0rem;
 		bottom: 0.5rem;
 	}
+
 	#scroll {
 		scale: 75%;
 		bottom: 15%;
 	}
 	#scroll-anim {
 		animation-duration: 2s;
-	}
-	.container .card {
-		min-width: 10rem;
 	}
 }
 
