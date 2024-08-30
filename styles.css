@@ -166,7 +166,7 @@ p {
 	left: 0;
 	right: 0;
 
-	bottom: 10%;
+	bottom: 0;
 }
 
 #scroll-anim {
@@ -206,8 +206,8 @@ p {
 }
 
 .container div {
-	width: calc((100% - var(--gap) * (var(--items) - 1)) / var(--items));
-	min-width: 10rem;
+	min-width: 15rem;
+	max-width: calc((100% - var(--gap) * (var(--items) - 1)) / var(--items));
 	padding: 1rem;
 	background: rgba(0, 0, 0, 0.3);
 	border-radius: 0.5rem;
@@ -325,7 +325,7 @@ p {
 	}
 	#about {
 		justify-content: left;
-		padding-top: 55%;
+		padding-top: 45%;
 	}
 	#about h2 {
 		font-size: 2rem;
@@ -342,10 +342,13 @@ p {
 		bottom: 0.5rem;
 	}
 	#scroll {
-		scale: 85%;
-		bottom: 12%;
+		scale: 75%;
+		bottom: 15%;
 	}
 	#scroll-anim {
 		animation-duration: 2s;
+	}
+	.container div {
+		min-width: 10rem;
 	}
 }
