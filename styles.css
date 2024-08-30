@@ -206,7 +206,7 @@ p {
 }
 
 .container .card {
-	min-width: 15rem;
+	min-width: 12rem;
 	max-width: calc((100% - var(--gap) * (var(--items) - 1)) / var(--items));
 	padding: 1rem;
 	background: rgba(0, 0, 0, 0.3);
@@ -219,15 +219,6 @@ p {
 .container a {
 	margin: auto;
 	width: 50%;
-}
-
-.desc {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	--size: 1.5rem;
-	font-size: var(--size);
-	height: calc(var(--size) * 2);
 }
 
 .container a button {
@@ -249,25 +240,12 @@ p {
 	box-shadow: 0.1rem 0.1rem rgba(0, 0, 0, 0.5);
 }
 
-#portfolio .container {
-	--items: 4;
-}
-
-#portfolio .container .card {
-	border-radius: 1.2rem;
-}
-
-#portfolio .container img {
-	aspect-ratio: 3/2;
-	border-radius: 1rem;
-}
-
-#portfolio .container h3 {
-	font-size: 2.5rem;
+#skills {
+	padding: 0rem 15%;
 }
 
 #skills .container {
-	--gap: 0.6rem;
+	--gap: 1rem;
 	--items: 5;
 }
 
@@ -280,12 +258,38 @@ p {
 }
 
 #skills .container .card img {
-	height: 7rem;
+	width: 80%;
+	margin-bottom: 1rem;
 }
 
-#skills .container .card p {
-	font-size: 4rem;
-	height: 5rem;
+#skills .container .card h3 {
+	font-weight: normal;
+}
+
+#portfolio .container {
+	--items: 4;
+}
+
+#portfolio .container .card {
+	border-radius: 1.2rem;
+}
+
+.desc {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	--size: 1.5rem;
+	font-size: var(--size);
+	height: calc(var(--size) * 2);
+}
+
+#portfolio .container img {
+	aspect-ratio: 3/2;
+	border-radius: 1rem;
+}
+
+#portfolio .container h3 {
+	font-size: 2.5rem;
 }
 
 @media screen and (max-width: 576px) {
@@ -325,8 +329,21 @@ p {
 		padding: 0.25rem;
 		font-size: 1.25rem;
 	}
-	#skills .container h3 {
-		font-size: 1.25rem;
+	#skills {
+		padding: 0;
+	}
+	#skills .container {
+		--gap: 0.5rem;
+	}
+	#skills .container .card {
+		padding: 1.25rem;
+	}
+	#skills .container .card img {
+		width: 70%;
+		margin-bottom: 0rem;
+	}
+	#skills .container .card h3 {
+		font-size: 1.5rem;
 	}
 	#about {
 		justify-content: left;
