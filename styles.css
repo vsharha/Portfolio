@@ -290,11 +290,12 @@ article p {
 	}
 	article {
 		margin-top: 1rem;
+		margin-bottom: 3rem;
 	}
 	article p {
 		font-size: 1.25rem;
 		margin-top: 0rem;
-		padding: 0 2.5rem;
+		padding: 0 2rem;
 		text-align: left;
 	}
 	#about {
