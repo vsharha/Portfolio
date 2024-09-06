@@ -27,6 +27,7 @@ section {
 	padding: 0rem 10%;
 	scroll-snap-align: start;
 	scroll-snap-stop: always;
+	padding-bottom: 4rem;
 }
 
 button:hover,
@@ -239,7 +240,7 @@ p {
 }
 
 #portfolio .container {
-	--items: 4;
+	--items: 5;
 }
 
 #portfolio .container .card {
@@ -286,7 +287,7 @@ article p {
 	}
 	section {
 		padding: 0;
-		padding-bottom: 7rem;
+		padding-bottom: 6rem;
 	}
 	article {
 		margin-top: 1rem;
