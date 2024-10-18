@@ -9,10 +9,15 @@
 
 html {
 	--primary: rgb(27, 36, 80);
+	--background-color: linear-gradient(rgb(34, 46, 102), rgb(20, 27, 59));
 	background-position: fixed;
 	scroll-behavior: smooth;
 	scroll-padding: 0;
 	scroll-margin: 0;
+}
+
+body {
+	background: var(--background-color);
 }
 
 body,
@@ -22,7 +27,7 @@ html {
 }
 
 section {
-	background: linear-gradient(rgb(34, 46, 102), rgb(20, 27, 59));
+	background: var(--background-color);
 	min-height: 100vh;
 	padding: 0rem 10%;
 	scroll-snap-align: start;
