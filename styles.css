@@ -10,6 +10,8 @@
 html {
 	--primary: rgb(27, 36, 80);
 	--background-color: linear-gradient(rgb(34, 46, 102), rgb(20, 27, 59));
+	--padding: 0rem 10%;
+
 	background-position: fixed;
 	scroll-behavior: smooth;
 	scroll-padding: 0;
@@ -29,7 +31,6 @@ html {
 section {
 	background: var(--background-color);
 	min-height: 100vh;
-	padding: 0rem 10%;
 	scroll-snap-align: start;
 	scroll-snap-stop: always;
 	padding-bottom: 4rem;
@@ -184,9 +185,15 @@ p {
 	--gap: 1rem;
 	gap: var(--gap);
 	--items: 4;
+
+	padding: var(--padding);
 }
 
-.container .card {
+#about {
+	padding: var(--padding);
+}
+
+.card {
 	min-width: 12rem;
 	max-width: calc((100% - var(--gap) * (var(--items) - 1)) / var(--items));
 	padding: 1rem;
@@ -196,25 +203,55 @@ p {
 	flex-direction: column;
 }
 
+.carousel .card {
+	/* filter: brightness(65%); */
+}
+
+.carousel .active {
+	filter: brightness(100%);
+}
+
 .container a {
 	margin: auto;
 	width: 50%;
 }
 
-.container a button {
-	width: 100%;
-	display: block;
+.carousel .nav-buttons {
+	display: flex;
+	gap: 5rem;
+	align-items: center;
+	justify-content: center;
+}
+
+.carousel .nav-buttons button {
+	aspect-ratio: 2/1;
+	height: 3rem;
+	border-radius: 0.8rem;
+	background: rgba(0, 0, 0, 0.4);
+	font-size: 2rem;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+button {
 	padding: 0.5rem;
 	background: white;
 	font-weight: bold;
+	border: none;
+
+	box-shadow: 0.2rem 0.2rem rgba(0, 0, 0, 0.5);
+}
+
+.container a button {
+	width: 100%;
 	font-size: 1.5rem;
 	border-radius: 2rem;
-	box-shadow: 0.2rem 0.2rem rgba(0, 0, 0, 0.5);
-
 	color: var(--primary);
 }
 
-.container a button:active {
+button:active {
 	transform: translateX(0.1rem) translateY(0.1rem);
 
 	box-shadow: 0.1rem 0.1rem rgba(0, 0, 0, 0.5);
@@ -225,7 +262,7 @@ p {
 	--items: 5;
 }
 
-#skills .container .card {
+#skills .card {
 	background: rgba(56, 65, 117, 0.61);
 	border-radius: 2.5rem;
 	padding: 1.75rem;
@@ -235,12 +272,12 @@ p {
 	gap: 1rem;
 }
 
-#skills .container .card img {
+#skills .card img {
 	width: 80%;
 	margin-bottom: 1rem;
 }
 
-#skills .container .card h3 {
+#skills .card h3 {
 	font-weight: normal;
 }
 
@@ -248,7 +285,7 @@ p {
 	--items: 5;
 }
 
-#portfolio .container .card {
+#portfolio .card {
 	border-radius: 1.2rem;
 }
 
@@ -335,7 +372,7 @@ article p {
 		padding: 0.25rem;
 		font-size: 1.25rem;
 	}
-	.container .card {
+	.card {
 		min-width: 10rem;
 	}
 
@@ -358,14 +395,14 @@ article p {
 	#skills .container {
 		--gap: 0.5rem;
 	}
-	#skills .container .card {
+	#skills .card {
 		padding: 1.25rem;
 	}
-	#skills .container .card img {
+	#skills .card img {
 		width: 70%;
 		margin-bottom: 0rem;
 	}
-	#skills .container .card h3 {
+	#skills .card h3 {
 		font-size: 1.5rem;
 	}
 
