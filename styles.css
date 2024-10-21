@@ -206,7 +206,7 @@ p {
 	scale: 0.9;
 	--gap: 0.5rem;
 	gap: var(--gap);
-	--items: 4;
+	--items: 5;
 
 	padding: var(--padding);
 }
@@ -217,7 +217,7 @@ p {
 }
 
 .card {
-	min-width: 12rem;
+	min-width: 10rem;
 	max-width: calc((100% - var(--gap) * (var(--items) - 1)) / var(--items));
 	padding: 1rem;
 	background: rgba(0, 0, 0, 0.15);
