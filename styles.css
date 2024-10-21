@@ -5,7 +5,6 @@
 	box-sizing: border-box;
 	font-family: "Lato", sans-serif;
 	color: var(--secondary);
-	transition: all 0.5s ease;
 }
 
 html {
@@ -226,6 +225,10 @@ p {
 .carousel {
 	width: 100%;
 	overflow: hidden;
+}
+
+.carousel * {
+	transition: all 0.5s ease;
 }
 
 .carousel .card {
