@@ -145,7 +145,7 @@ p {
 @keyframes bobbing {
 	0%,
 	100% {
-		bottom: 1.5rem;
+		bottom: 2rem;
 	}
 	50% {
 		bottom: 2.5rem;
