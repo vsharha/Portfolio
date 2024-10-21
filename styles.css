@@ -444,13 +444,11 @@ article p {
 		font-size: 1.5rem;
 		rotate: 190deg;
 	}
+	.carousel .container {
+		width: min-content;
+	}
 	.carousel .card {
 		min-width: 70vw;
-	}
-
-	.carousel .card .container {
-		width: 100%;
-		margin-bottom: 1.5rem;
 	}
 	.container a {
 		width: 100%;

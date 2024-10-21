@@ -10,7 +10,6 @@ class Carousel {
 			}
 		} else {
 			this.activeIndex = 0;
-			this.offset(-middle);
 		}
 
 		for (let card of this.getCards()) {
@@ -76,11 +75,11 @@ class Carousel {
 		this.setPixelOffset(this.currentOffset * offsetValue);
 	}
 	getOffsetValue() {
-		// return (
-		// 	this.el.querySelector(".container").offsetWidth /
-		// 	this.getCards().length
-		// );
-		return this.getCards()[1].offsetWidth;
+		return (
+			this.el.querySelector(".container").offsetWidth /
+			this.getCards().length
+		);
+		// return this.getCards()[1].offsetWidth;
 	}
 	setPixelOffset(pixelOffset) {
 		this.el.querySelector(
