@@ -49,6 +49,7 @@ button:hover,
 }
 
 #socials {
+	scale: 0.85;
 	position: fixed;
 	bottom: 0px;
 }
@@ -119,12 +120,13 @@ h1 {
 	padding-top: 2rem;
 	margin: 0;
 
+	scale: 0.85;
 	font-family: "Dancing Script", cursive;
 	font-weight: bolder;
 }
 
 #about h1 {
-	font-size: 7rem;
+	font-size: 5rem;
 }
 
 h2 {
@@ -143,7 +145,7 @@ p {
 @keyframes bobbing {
 	0%,
 	100% {
-		bottom: 1rem;
+		bottom: 1.5rem;
 	}
 	50% {
 		bottom: 2.5rem;
@@ -157,6 +159,7 @@ p {
 	left: 0;
 	right: 0;
 
+	scale: 0.75;
 	bottom: 0;
 	margin: auto;
 	width: fit-content;
@@ -192,9 +195,10 @@ p {
 	justify-content: center;
 
 	margin: auto;
-	margin-bottom: 3rem;
+	margin-bottom: 1rem;
 	text-align: center;
 
+	scale: 0.9;
 	--gap: 0.5rem;
 	gap: var(--gap);
 	--items: 4;
@@ -225,7 +229,7 @@ p {
 }
 
 .carousel .card {
-	filter: brightness(60%);
+	opacity: 0.6;
 	width: 50vw;
 	transform: scale(95%);
 }
@@ -238,7 +242,7 @@ p {
 }
 
 .carousel .active {
-	filter: brightness(100%);
+	opacity: 1;
 	transform: none;
 }
 
@@ -356,7 +360,7 @@ button:active {
 }
 
 article p {
-	font-size: 1.75rem;
+	font-size: 1.5rem;
 	margin-top: 2rem;
 	padding: 0 10%;
 	text-align: center;
@@ -384,6 +388,7 @@ article p {
 		padding: 0px 5%;
 	}
 	.title {
+		scale: 1;
 		font-size: 3.5rem;
 		padding: 2rem 0%;
 		margin-bottom: 0;
@@ -400,7 +405,7 @@ article p {
 		rotate: 190deg;
 	}
 	.carousel .card {
-		min-width: 60vw;
+		min-width: 70vw;
 	}
 
 	.carousel .card .container {
@@ -417,10 +422,11 @@ article p {
 	}
 	.card {
 		min-width: 10rem;
+		scale: 1;
 	}
 
 	#portfolio .container {
-		--gap: 0.5rem;
+		--gap: 0.25rem;
 	}
 	#portfolio .container .date {
 		font-size: 1rem;
@@ -459,6 +465,10 @@ article p {
 	}
 	#about h1 {
 		font-size: 5rem;
+	}
+
+	#socials {
+		scale: 1;
 	}
 
 	#socials #links {
