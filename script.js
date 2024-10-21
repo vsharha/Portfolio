@@ -64,18 +64,12 @@ class Carousel {
 		this.el.addEventListener("touchstart", (event) => {
 			this.handleTouchStart(event);
 		});
-		this.el.addEventListener("touchmove", (event) => {
-			this.handleTouchMove(event);
-		});
 		this.el.addEventListener("touchend", (event) => {
 			this.handleTouchEnd(event);
 		});
 	}
 	handleTouchStart(event) {
 		this.startX = event.touches[0].clientX;
-	}
-	handleTouchMove(event) {
-		event.preventDefault();
 	}
 	handleTouchEnd(event) {
 		const endX = event.changedTouches[0].clientX;
