@@ -74,12 +74,10 @@ class Carousel {
 	handleTouchEnd(event) {
 		const endX = event.changedTouches[0].clientX;
 		const delta = this.startX - endX;
-		console.log(delta);
 		this.scrollMove(delta);
 	}
 	handleScroll(event) {
 		this.startX += event.deltaX;
-		console.log(this.startX);
 		this.scrollMove(this.startX);
 	}
 	scrollMove(distance) {
@@ -190,6 +188,28 @@ function onReady() {
 		carousels.push(new Carousel(carouselEl));
 	}
 }
+
+// function onWheel(event) {
+// 	const maxScroll = document.body.scrollHeight - window.innerHeight;
+
+// 	console.log(window.scrollY + event.deltaY);
+// 	if (window.scrollY + event.deltaY < 0) {
+// 		event.preventDefault();
+// 	}
+
+// 	if (window.scrollY >= maxScroll && event.deltaY > 0) {
+// 		event.preventDefault();
+// 		window.scrollY = maxScroll;
+// 	}
+// }
+
+// window.addEventListener(
+// 	"wheel",
+// 	(event) => {
+// 		onWheel(event);
+// 	},
+// 	{ passive: false }
+// );
 
 window.onload = onReady;
 window.onresize = onResize;
