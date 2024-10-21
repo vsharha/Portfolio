@@ -251,7 +251,7 @@ p {
 
 .carousel .inactive {
 	opacity: 0.6;
-	transform: scale(95%);
+	scale: 0.95;
 }
 
 .carousel .nav-buttons {
@@ -272,6 +272,33 @@ p {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+/* INDICATOR BAR */
+
+.indicator-bar {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.indicator {
+	aspect-ratio: 1/1;
+	width: 2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.dot {
+	aspect-ratio: 1/1;
+	border-radius: 100%;
+	width: 1rem;
+	background: green;
+}
+
+.dot.inactive {
+	scale: 0.5;
 }
 
 /* BUTTONS */

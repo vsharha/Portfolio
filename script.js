@@ -36,10 +36,11 @@ class Carousel {
 		this.setPixelOffset(this.currentOffset * offsetValue);
 	}
 	getOffsetValue() {
-		return (
-			this.el.querySelector(".container").offsetWidth /
-			this.getCards().length
-		);
+		// return (
+		// 	this.el.querySelector(".container").offsetWidth /
+		// 	this.getCards().length
+		// );
+		return this.getCards()[1].offsetWidth;
 	}
 	setPixelOffset(pixelOffset) {
 		this.el.querySelector(
