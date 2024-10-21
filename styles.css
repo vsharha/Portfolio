@@ -319,7 +319,7 @@ button {
 	box-shadow: var(--shadow) var(--shadow) var(--shadow-color);
 }
 
-.container a button {
+a button {
 	width: 100%;
 	font-size: 1.5rem;
 	border-radius: 2rem;
@@ -340,6 +340,33 @@ button:active {
 	background: var(--secondary);
 }
 
+#resume {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0%;
+}
+
+.resume {
+	width: 100%;
+}
+
+.resume a {
+	margin: auto;
+}
+
+.resume a button {
+	font-size: 2rem;
+	display: block;
+	width: fit-content;
+	padding: 1rem 2rem;
+	margin: auto;
+}
+
+.resume a button i {
+	color: var(--primary);
+	margin-left: 1rem;
+}
 /* SKILLS CONTAINERS */
 
 #skills .container {
@@ -525,6 +552,13 @@ article p {
 	}
 	#scroll-anim {
 		animation-duration: 2s;
+	}
+
+	.resume a button {
+		width: 90%;
+		font-size: 1.8rem;
+		border-radius: 3rem;
+		padding: 1.5rem 1rem;
 	}
 }
 
