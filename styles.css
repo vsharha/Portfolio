@@ -400,10 +400,10 @@ article p {
 		rotate: 190deg;
 	}
 	.carousel .card {
-		min-width: 70vw;
+		min-width: 60vw;
 	}
 
-	.container {
+	.carousel .card .container {
 		width: 100%;
 		margin-bottom: 1.5rem;
 	}
@@ -411,9 +411,9 @@ article p {
 		width: 100%;
 	}
 	.container a button {
-		padding: 0.25rem;
-		font-size: 1.25rem;
-		width: 65%;
+		padding: 1rem;
+		font-size: 1.5rem;
+		width: 50%;
 	}
 	.card {
 		min-width: 10rem;
@@ -423,16 +423,17 @@ article p {
 		--gap: 0.5rem;
 	}
 	#portfolio .container .date {
-		font-size: 0.75rem;
+		font-size: 1rem;
+		margin-top: 0.5rem;
 	}
 	#portfolio .container h3 {
-		font-size: 1.5rem;
+		font-size: 2rem;
 	}
-	.desc {
+	#portfolio .desc {
 		margin: 0.5rem 0rem;
 	}
-	.desc * {
-		font-size: 1rem;
+	#portfolio .desc * {
+		font-size: 1.2rem;
 	}
 
 	#skills .container {

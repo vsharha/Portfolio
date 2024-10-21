@@ -2,11 +2,18 @@ class Carousel {
 	constructor(el) {
 		this.el = el;
 		this.currentOffset = 0;
-		this.activeIndex = Math.ceil(this.getCards().length / 2 - 1);
-		this.activeCard().classList.add("active");
-		if (this.getCards().length % 2 == 0) {
-			this.offset(-0.5);
+		let middle = Math.ceil(this.getCards().length / 2 - 1);
+		if (window.innerWidth > 576) {
+			this.activeIndex = middle;
+			if (this.getCards().length % 2 == 0) {
+				this.offset(-0.5);
+			}
+		} else {
+			this.activeIndex = 0;
+			this.offset(-middle);
 		}
+
+		this.activeCard().classList.add("active");
 	}
 	move(modifier) {
 		let newIndex = this.activeIndex + modifier;
@@ -21,7 +28,7 @@ class Carousel {
 	}
 	offset(modifier) {
 		this.currentOffset -= modifier;
-		let offsetValue = this.getOffsetValue();
+		let offsetValue = this.getCards()[1].offsetWidth;
 		this.setPixelOffset(this.currentOffset * offsetValue);
 	}
 	setPixelOffset(pixelOffset) {
@@ -31,12 +38,6 @@ class Carousel {
 	}
 	getCards() {
 		return this.el.querySelectorAll(".container .card");
-	}
-	getOffsetValue() {
-		return (
-			this.el.querySelector(".container").offsetWidth /
-			this.getCards().length
-		);
 	}
 	getCardIndex(card) {
 		let cards = this.getCards();
