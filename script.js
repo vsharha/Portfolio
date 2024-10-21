@@ -2,6 +2,9 @@ class Carousel {
 	constructor(el) {
 		this.el = el;
 		this.currentOffset = 0;
+		this.startX = 0;
+		this.threshold = 30;
+
 		let middle = Math.ceil(this.getCards().length / 2 - 1);
 		if (window.innerWidth > 576) {
 			this.activeIndex = middle;
@@ -53,6 +56,43 @@ class Carousel {
 		}
 
 		this.el.appendChild(indicatorBar);
+
+		this.el.addEventListener("wheel", (event) => {
+			this.handleScroll(event);
+		});
+
+		this.el.addEventListener("touchstart", (event) => {
+			this.handleTouchStart(event);
+		});
+		this.el.addEventListener("touchmove", (event) => {
+			this.handleTouchMove(event);
+		});
+		this.el.addEventListener("touchend", (event) => {
+			this.handleTouchEnd(event);
+		});
+	}
+	handleTouchStart(event) {
+		this.startX = event.touches[0].clientX;
+	}
+	handleTouchMove(event) {
+		event.preventDefault();
+	}
+	handleTouchEnd(event) {
+		const endX = event.changedTouches[0].clientX;
+		const delta = this.startX - endX;
+		console.log(delta);
+		this.scrollMove(delta);
+	}
+	handleScroll(event) {
+		this.startX += event.deltaX;
+		console.log(this.startX);
+		this.scrollMove(this.startX);
+	}
+	scrollMove(distance) {
+		if (Math.abs(distance) >= this.threshold) {
+			this.move(distance > 0 ? 1 : -1);
+			this.startX = 0;
+		}
 	}
 	move(modifier) {
 		let newIndex = this.activeIndex + modifier;
@@ -145,10 +185,7 @@ function processInput(el) {
 	if (el.classList.contains("card") || el.classList.contains("indicator")) {
 		modifier = carousel.getIndex(el) - carousel.activeIndex;
 	} else {
-		modifier = 1;
-		if (el.classList.contains("left")) {
-			modifier = -1;
-		}
+		modifier = el.classList.contains("left") ? 1 : -1;
 	}
 
 	carousels[getCarouselIndex(carouselEl)].move(modifier);
