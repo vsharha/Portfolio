@@ -453,6 +453,7 @@ article p {
 
 	#skills .container {
 		--gap: 0.5rem;
+		padding: 0;
 	}
 	#skills .card {
 		padding: 1.25rem;
