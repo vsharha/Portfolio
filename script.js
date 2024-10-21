@@ -61,14 +61,16 @@ class Carousel {
 			this.handleScroll(event);
 		});
 
-		this.el.addEventListener("touchstart", (event) => {
+		let container = this.el.querySelector(".container");
+		container.addEventListener("touchstart", (event) => {
 			this.handleTouchStart(event);
 		});
-		this.el.addEventListener("touchend", (event) => {
+		container.addEventListener("touchend", (event) => {
 			this.handleTouchEnd(event);
 		});
 	}
 	handleTouchStart(event) {
+		event.preventDefault();
 		this.startX = event.touches[0].clientX;
 	}
 	handleTouchEnd(event) {
@@ -77,6 +79,8 @@ class Carousel {
 		this.scrollMove(delta);
 	}
 	handleScroll(event) {
+		// event.preventDefault();
+
 		this.startX += event.deltaX;
 		this.scrollMove(this.startX);
 	}
