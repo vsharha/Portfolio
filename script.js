@@ -21,13 +21,22 @@ class Carousel {
 	}
 	offset(modifier) {
 		this.currentOffset -= modifier;
-		let offsetValue = this.getCards()[0].offsetWidth;
-		this.el.querySelector(".container").style.transform = `translateX(${
-			this.currentOffset * offsetValue
-		}px)`;
+		let offsetValue = this.getOffsetValue();
+		this.setPixelOffset(this.currentOffset * offsetValue);
+	}
+	setPixelOffset(pixelOffset) {
+		this.el.querySelector(
+			".container"
+		).style.transform = `translateX(${pixelOffset}px)`;
 	}
 	getCards() {
 		return this.el.querySelectorAll(".container .card");
+	}
+	getOffsetValue() {
+		return (
+			this.el.querySelector(".container").offsetWidth /
+			this.getCards().length
+		);
 	}
 	getCardIndex(card) {
 		let cards = this.getCards();
@@ -39,6 +48,15 @@ class Carousel {
 	}
 	activeCard() {
 		return this.getCards()[this.activeIndex];
+	}
+}
+
+function onResize() {
+	for (let carousel of carousels) {
+		let offset = carousel.currentOffset;
+		carousel.offset(-offset);
+		carousel.setPixelOffset(0);
+		carousel.offset(offset);
 	}
 }
 
@@ -99,3 +117,4 @@ function onReady() {
 }
 
 window.onload = onReady;
+window.onresize = onResize;

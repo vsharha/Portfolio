@@ -231,7 +231,9 @@ p {
 }
 
 .carousel .container {
-	padding: 0;
+	--gap: 1rem;
+	gap: var(--gap);
+	padding: 0 var(--gap);
 	flex-wrap: nowrap;
 }
 
