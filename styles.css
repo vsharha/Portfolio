@@ -237,12 +237,6 @@ p {
 	transition: all 0.5s ease;
 }
 
-.carousel .card {
-	opacity: 0.6;
-	width: 50vw;
-	transform: scale(95%);
-}
-
 .carousel .container {
 	--gap: 1rem;
 	gap: var(--gap);
@@ -250,9 +244,14 @@ p {
 	flex-wrap: nowrap;
 }
 
-.carousel .active {
+.carousel .card {
 	opacity: 1;
-	transform: none;
+	width: 50vw;
+}
+
+.carousel .inactive {
+	opacity: 0.6;
+	transform: scale(95%);
 }
 
 .carousel .nav-buttons {

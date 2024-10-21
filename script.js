@@ -13,15 +13,19 @@ class Carousel {
 			this.offset(-middle);
 		}
 
-		this.activeCard().classList.add("active");
+		for (let card of this.getCards()) {
+			if (card != this.activeCard()) {
+				card.classList.add("inactive");
+			}
+		}
 	}
 	move(modifier) {
 		let newIndex = this.activeIndex + modifier;
 
 		if (!(newIndex < 0 || newIndex > this.getCards().length - 1)) {
-			this.activeCard().classList.remove("active");
+			this.activeCard().classList.add("inactive");
 			this.activeIndex = newIndex;
-			this.activeCard().classList.add("active");
+			this.activeCard().classList.remove("inactive");
 
 			this.offset(modifier);
 		}
