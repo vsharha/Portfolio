@@ -193,6 +193,7 @@ p {
 /* CONTAINER */
 
 .container {
+	z-index: 0;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
@@ -216,7 +217,6 @@ p {
 }
 
 .card {
-	z-index: 0;
 	min-width: 12rem;
 	max-width: calc((100% - var(--gap) * (var(--items) - 1)) / var(--items));
 	padding: 1rem;
