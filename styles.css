@@ -7,20 +7,24 @@
 	color: var(--secondary);
 }
 
-html {
+:root {
 	--primary: rgb(27, 36, 80);
 	--secondary: white;
-	--background-color: linear-gradient(rgb(34, 46, 102), rgb(20, 27, 59));
+	--background-color: linear-gradient(rgb(34, 46, 102), rgb(20, 28, 60));
 	--padding: 0rem 10%;
+}
 
-	background-position: fixed;
+html {
 	scroll-behavior: smooth;
 	scroll-padding: 0;
 	scroll-margin: 0;
 }
 
 body {
-	background: var(--background-color);
+	background: rgb(27, 37, 81);
+	background-position: fixed;
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 
 body,
