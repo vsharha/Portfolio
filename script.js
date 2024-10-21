@@ -17,18 +17,58 @@ class Carousel {
 			if (card != this.activeCard()) {
 				card.classList.add("inactive");
 			}
+			card.addEventListener("click", function () {
+				processInput(this);
+			});
 		}
+
+		let buttons = this.el.querySelectorAll(".nav-buttons button");
+
+		if (buttons.length > 0) {
+			buttons[0].classList.add("left");
+
+			for (let button of buttons) {
+				button.addEventListener("click", function () {
+					processInput(this);
+				});
+			}
+		}
+
+		let indicatorBar = document.createElement("div");
+		indicatorBar.classList.add("indicator-bar");
+
+		for (let i = 0; i < this.getCards().length; i++) {
+			let indicator = document.createElement("div");
+			indicator.classList.add("indicator");
+			let dot = document.createElement("div");
+			dot.classList.add("dot");
+			indicator.appendChild(dot);
+			if (i != this.activeIndex) {
+				dot.classList.add("inactive");
+			}
+			indicator.addEventListener("click", function () {
+				processInput(this);
+			});
+
+			indicatorBar.appendChild(indicator);
+		}
+
+		this.el.appendChild(indicatorBar);
 	}
 	move(modifier) {
 		let newIndex = this.activeIndex + modifier;
 
 		if (!(newIndex < 0 || newIndex > this.getCards().length - 1)) {
-			this.activeCard().classList.add("inactive");
-			this.activeIndex = newIndex;
-			this.activeCard().classList.remove("inactive");
-
+			this.updateIndex(newIndex);
 			this.offset(modifier);
 		}
+	}
+	updateIndex(index) {
+		this.activeCard().classList.add("inactive");
+		this.activeDot().classList.add("inactive");
+		this.activeIndex = index;
+		this.activeCard().classList.remove("inactive");
+		this.activeDot().classList.remove("inactive");
 	}
 	offset(modifier) {
 		this.currentOffset -= modifier;
@@ -50,16 +90,29 @@ class Carousel {
 	getCards() {
 		return this.el.querySelectorAll(".container .card");
 	}
-	getCardIndex(card) {
-		let cards = this.getCards();
-		for (let i = 0; i < cards.length; i++) {
-			if (cards[i] == card) {
-				return i;
-			}
-		}
+	getIndicators() {
+		return this.el.querySelectorAll(".indicator");
+	}
+	activeDot() {
+		return this.getIndicators()[this.activeIndex].firstChild;
 	}
 	activeCard() {
 		return this.getCards()[this.activeIndex];
+	}
+
+	getIndex(element) {
+		let elements = [];
+		if (element.classList.contains("card")) {
+			elements = this.getCards();
+		} else if (element.classList.contains("indicator")) {
+			elements = this.getIndicators();
+		}
+
+		for (let i = 0; i < elements.length; i++) {
+			if (elements[i] == element) {
+				return i;
+			}
+		}
 	}
 }
 
@@ -72,8 +125,6 @@ function onResize() {
 	}
 }
 
-let carousels = [];
-
 function getCarouselIndex(carouselEl) {
 	for (let i = 0; i < carousels.length; i++) {
 		if (carousels[i].el == carouselEl) {
@@ -84,14 +135,16 @@ function getCarouselIndex(carouselEl) {
 	// return 0;
 }
 
+let carousels = [];
+
 function processInput(el) {
 	let carouselEl = el.parentElement.parentElement;
 	carousel = carousels[getCarouselIndex(carouselEl)];
 
 	let modifier = 0;
 
-	if (el.classList.contains("card")) {
-		modifier = carousel.getCardIndex(el) - carousel.activeIndex;
+	if (el.classList.contains("card") || el.classList.contains("indicator")) {
+		modifier = carousel.getIndex(el) - carousel.activeIndex;
 	} else {
 		modifier = 1;
 		if (el.classList.contains("left")) {
@@ -104,26 +157,6 @@ function processInput(el) {
 
 function onReady() {
 	for (let carouselEl of document.querySelectorAll(".carousel")) {
-		let buttons = carouselEl.querySelectorAll(".nav-buttons button");
-
-		if (buttons.length > 0) {
-			buttons[0].classList.add("left");
-
-			for (let button of buttons) {
-				button.addEventListener("click", function () {
-					processInput(this);
-				});
-			}
-		}
-
-		let cards = carouselEl.querySelectorAll(".container .card");
-
-		for (let card of cards) {
-			card.addEventListener("click", function () {
-				processInput(this);
-			});
-		}
-
 		carousels.push(new Carousel(carouselEl));
 	}
 }

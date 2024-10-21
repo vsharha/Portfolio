@@ -25,6 +25,11 @@ body {
 	background-position: fixed;
 	background-size: cover;
 	background-repeat: no-repeat;
+
+	max-width: 100%;
+	height: fit-content;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
 
 body,
@@ -294,11 +299,11 @@ p {
 	aspect-ratio: 1/1;
 	border-radius: 100%;
 	width: 1rem;
-	background: green;
+	background: var(--secondary);
 }
 
 .dot.inactive {
-	scale: 0.5;
+	scale: 0.8;
 }
 
 /* BUTTONS */
