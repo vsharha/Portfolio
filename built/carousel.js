@@ -19,13 +19,17 @@ export class Carousel {
             if (card != this.activeCard()) {
                 card.classList.add("inactive");
             }
-            card.addEventListener("click", this.processInput.bind(this));
+            card.addEventListener("click", (event) => {
+                this.processInput(event.target);
+            });
         }
         const buttons = this.el.querySelectorAll(".nav-buttons button");
         if (buttons.length > 0) {
             buttons[0].classList.add("left");
             for (let button of buttons) {
-                button.addEventListener("click", this.processInput.bind(this));
+                button.addEventListener("click", (event) => {
+                    this.processInput(event.target);
+                });
             }
         }
         let indicatorBar = document.createElement("div");
@@ -39,7 +43,9 @@ export class Carousel {
             if (i != this.activeIndex) {
                 dot.classList.add("inactive");
             }
-            indicator.addEventListener("click", this.processInput.bind(this));
+            indicator.addEventListener("click", (event) => {
+                this.processInput(event.target);
+            });
             indicatorBar.appendChild(indicator);
         }
         this.el.appendChild(indicatorBar);
@@ -57,6 +63,7 @@ export class Carousel {
             this.handleTouchEnd(event);
         });
     }
+    // handle scroll
     handleTouchStart(event) {
         this.startX = event.touches[0].clientX;
     }
@@ -81,6 +88,7 @@ export class Carousel {
             this.startX = 0;
         }
     }
+    // carousel functionality
     move(modifier) {
         let newIndex = this.activeIndex + modifier;
         if (!(newIndex < 0 || newIndex > this.getCards().length - 1)) {
@@ -106,6 +114,7 @@ export class Carousel {
     setPixelOffset(pixelOffset) {
         this.el.querySelector(".container").style.transform = `translateX(${pixelOffset}px)`;
     }
+    // get element nodelists
     getCards() {
         return this.el.querySelectorAll(".container .card");
     }
@@ -132,6 +141,7 @@ export class Carousel {
             }
         }
     }
+    // general functionality
     onResize() {
         let offset = this.currentOffset;
         this.offset(-offset);
