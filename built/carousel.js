@@ -20,7 +20,7 @@ export class Carousel {
                 card.classList.add("inactive");
             }
             card.addEventListener("click", (event) => {
-                this.processInput(event.target);
+                this.processInput(event.currentTarget);
             });
         }
         const buttons = this.el.querySelectorAll(".nav-buttons button");
@@ -28,7 +28,7 @@ export class Carousel {
             buttons[0].classList.add("left");
             for (let button of buttons) {
                 button.addEventListener("click", (event) => {
-                    this.processInput(event.target);
+                    this.processInput(event.currentTarget);
                 });
             }
         }
@@ -44,7 +44,7 @@ export class Carousel {
                 dot.classList.add("inactive");
             }
             indicator.addEventListener("click", (event) => {
-                this.processInput(event.target);
+                this.processInput(event.currentTarget);
             });
             indicatorBar.appendChild(indicator);
         }
@@ -150,6 +150,7 @@ export class Carousel {
     }
     processInput(el) {
         let modifier = 0;
+        console.log(el);
         if (el.classList.contains("card") ||
             el.classList.contains("indicator")) {
             modifier = this.getIndex(el) - this.activeIndex;

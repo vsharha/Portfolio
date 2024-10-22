@@ -27,7 +27,7 @@ export class Carousel {
 				card.classList.add("inactive");
 			}
 			card.addEventListener("click", (event) => {
-				this.processInput(event.target as HTMLElement);
+				this.processInput(event.currentTarget as HTMLElement);
 			});
 		}
 
@@ -38,7 +38,7 @@ export class Carousel {
 
 			for (let button of buttons) {
 				button.addEventListener("click", (event) => {
-					this.processInput(event.target as HTMLElement);
+					this.processInput(event.currentTarget as HTMLElement);
 				});
 			}
 		}
@@ -56,7 +56,7 @@ export class Carousel {
 				dot.classList.add("inactive");
 			}
 			indicator.addEventListener("click", (event) => {
-				this.processInput(event.target as HTMLElement);
+				this.processInput(event.currentTarget as HTMLElement);
 			});
 
 			indicatorBar.appendChild(indicator);
@@ -176,6 +176,7 @@ export class Carousel {
 	processInput(el: HTMLElement) {
 		let modifier = 0;
 
+		console.log(el);
 		if (
 			el.classList.contains("card") ||
 			el.classList.contains("indicator")

@@ -418,8 +418,6 @@ button:active {
 /* PORTFOLIO CONTAINERS */
 
 #portfolio .card {
-	height: 50vh;
-	width: auto;
 	border-radius: 1.2rem;
 }
 
