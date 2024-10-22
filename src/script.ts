@@ -1,18 +1,25 @@
 class Carousel {
-	constructor(el) {
+	el: HTMLElement;
+	currentOffset: number;
+	startX: number;
+	threshold: number;
+	activeIndex: number;
+
+	constructor(el: HTMLElement) {
 		this.el = el;
 		this.currentOffset = 0;
 		this.startX = 0;
-		this.threshold = 30;
 
-		let middle = Math.ceil(this.getCards().length / 2 - 1);
+		let middle: number = Math.ceil(this.getCards().length / 2 - 1);
 		if (window.innerWidth > 576) {
 			this.activeIndex = middle;
 			if (this.getCards().length % 2 == 0) {
 				this.offset(-0.5);
 			}
+			this.threshold = 50;
 		} else {
 			this.activeIndex = 0;
+			this.threshold = 30;
 		}
 
 		for (let card of this.getCards()) {
@@ -62,38 +69,38 @@ class Carousel {
 		});
 
 		let container = this.el.querySelector(".container");
-		container.addEventListener("touchstart", (event) => {
+		container.addEventListener("touchstart", (event: TouchEvent) => {
 			this.handleTouchStart(event);
 		});
-		container.addEventListener("touchmove", (event) => {
+		container.addEventListener("touchmove", (event: TouchEvent) => {
 			this.handleTouchMove(event);
 		});
-		container.addEventListener("touchend", (event) => {
+		container.addEventListener("touchend", (event: TouchEvent) => {
 			this.handleTouchEnd(event);
 		});
 	}
-	handleTouchStart(event) {
+	handleTouchStart(event: TouchEvent) {
 		this.startX = event.touches[0].clientX;
 	}
-	handleTouchMove(event) {
+	handleTouchMove(event: TouchEvent) {
 		event.preventDefault();
 	}
-	handleTouchEnd(event) {
+	handleTouchEnd(event: TouchEvent) {
 		const endX = event.changedTouches[0].clientX;
 		const delta = this.startX - endX;
 		this.scrollMove(delta);
 	}
-	handleScroll(event) {
+	handleScroll(event: WheelEvent) {
 		this.startX += event.deltaX;
 		this.scrollMove(this.startX);
 	}
-	scrollMove(distance) {
+	scrollMove(distance: number) {
 		if (Math.abs(distance) >= this.threshold) {
 			this.move(distance > 0 ? 1 : -1);
 			this.startX = 0;
 		}
 	}
-	move(modifier) {
+	move(modifier: number) {
 		let newIndex = this.activeIndex + modifier;
 
 		if (!(newIndex < 0 || newIndex > this.getCards().length - 1)) {
@@ -101,28 +108,27 @@ class Carousel {
 			this.offset(modifier);
 		}
 	}
-	updateIndex(index) {
+	updateIndex(index: number) {
 		this.activeCard().classList.add("inactive");
 		this.activeDot().classList.add("inactive");
 		this.activeIndex = index;
 		this.activeCard().classList.remove("inactive");
 		this.activeDot().classList.remove("inactive");
 	}
-	offset(modifier) {
+	offset(modifier: number) {
 		this.currentOffset -= modifier;
 		let offsetValue = this.getOffsetValue();
 		this.setPixelOffset(this.currentOffset * offsetValue);
 	}
 	getOffsetValue() {
 		return (
-			this.el.querySelector(".container").offsetWidth /
+			(this.el.querySelector(".container") as HTMLElement).offsetWidth /
 			this.getCards().length
 		);
-		// return this.getCards()[1].offsetWidth;
 	}
-	setPixelOffset(pixelOffset) {
-		this.el.querySelector(
-			".container"
+	setPixelOffset(pixelOffset: number) {
+		(
+			this.el.querySelector(".container") as HTMLElement
 		).style.transform = `translateX(${pixelOffset}px)`;
 	}
 	getCards() {
@@ -132,18 +138,18 @@ class Carousel {
 		return this.el.querySelectorAll(".indicator");
 	}
 	activeDot() {
-		return this.getIndicators()[this.activeIndex].firstChild;
+		return this.getIndicators()[this.activeIndex].firstChild as HTMLElement;
 	}
 	activeCard() {
 		return this.getCards()[this.activeIndex];
 	}
 
-	getIndex(element) {
-		let elements = [];
+	getIndex(element: HTMLElement) {
+		let elements: NodeListOf<HTMLElement>;
 		if (element.classList.contains("card")) {
-			elements = this.getCards();
+			elements = this.getCards() as NodeListOf<HTMLElement>;
 		} else if (element.classList.contains("indicator")) {
-			elements = this.getIndicators();
+			elements = this.getIndicators() as NodeListOf<HTMLElement>;
 		}
 
 		for (let i = 0; i < elements.length; i++) {
@@ -177,7 +183,7 @@ let carousels = [];
 
 function processInput(el) {
 	let carouselEl = el.parentElement.parentElement;
-	carousel = carousels[getCarouselIndex(carouselEl)];
+	let carousel = carousels[getCarouselIndex(carouselEl)];
 
 	let modifier = 0;
 
@@ -192,31 +198,9 @@ function processInput(el) {
 
 function onReady() {
 	for (let carouselEl of document.querySelectorAll(".carousel")) {
-		carousels.push(new Carousel(carouselEl));
+		carousels.push(new Carousel(carouselEl as HTMLElement));
 	}
 }
-
-// function onWheel(event) {
-// 	const maxScroll = document.body.scrollHeight - window.innerHeight;
-
-// 	console.log(window.scrollY + event.deltaY);
-// 	if (window.scrollY + event.deltaY < 0) {
-// 		event.preventDefault();
-// 	}
-
-// 	if (window.scrollY >= maxScroll && event.deltaY > 0) {
-// 		event.preventDefault();
-// 		window.scrollY = maxScroll;
-// 	}
-// }
-
-// window.addEventListener(
-// 	"wheel",
-// 	(event) => {
-// 		onWheel(event);
-// 	},
-// 	{ passive: false }
-// );
 
 window.onload = onReady;
 window.onresize = onResize;
