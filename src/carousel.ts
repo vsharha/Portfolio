@@ -1,20 +1,24 @@
 export class Carousel {
 	el: HTMLElement;
 	currentOffset: number;
-	startX: number;
+	startCoord: number;
 	threshold: number;
 	activeIndex: number;
 
 	constructor(el: HTMLElement) {
 		this.el = el;
 		this.currentOffset = 0;
-		this.startX = 0;
+		this.startCoord = 0;
 
 		const middle: number = Math.ceil(this.getCards().length / 2 - 1);
 		if (window.innerWidth > 576) {
-			this.activeIndex = middle;
-			if (this.getCards().length % 2 == 0) {
-				this.offset(-0.5);
+			if (this.isVerticalContainer()) {
+				this.activeIndex = 0;
+			} else {
+				this.activeIndex = middle;
+				if (this.getCards().length % 2 == 0) {
+					this.offset(-0.5);
+				}
 			}
 			this.threshold = 80;
 		} else {
@@ -79,29 +83,55 @@ export class Carousel {
 		});
 	}
 
+	isVertical(el: HTMLElement) {
+		return window.getComputedStyle(el).flexDirection == "column";
+	}
+
+	isVerticalContainer() {
+		let container: HTMLElement = this.el.querySelector(".container");
+		return this.isVertical(container);
+	}
+
 	// handle scroll
 	handleTouchStart(event: TouchEvent) {
-		this.startX = event.touches[0].clientX;
+		if (this.isVerticalContainer()) {
+			this.startCoord = event.touches[0].clientY;
+		} else {
+			this.startCoord = event.touches[0].clientX;
+		}
 	}
 	handleTouchMove(event: TouchEvent) {
 		event.preventDefault();
 	}
 	handleTouchEnd(event: TouchEvent) {
-		const endX = event.changedTouches[0].clientX;
-		const delta = this.startX - endX;
+		let endCoord = 0;
+		if (this.isVerticalContainer()) {
+			endCoord = event.changedTouches[0].clientY;
+		} else {
+			endCoord = event.changedTouches[0].clientX;
+		}
+		let delta = this.startCoord - endCoord;
 		this.scrollMove(delta);
 	}
 	handleScroll(event: WheelEvent) {
-		if (event.deltaX != 0) {
+		if (
+			(this.isVerticalContainer() && event.deltaY != 0) ||
+			event.deltaX != 0
+		) {
 			event.preventDefault();
 		}
-		this.startX += event.deltaX;
-		this.scrollMove(this.startX);
+		if (this.isVerticalContainer()) {
+			this.startCoord += event.deltaY;
+		} else {
+			this.startCoord += event.deltaX;
+		}
+
+		this.scrollMove(this.startCoord);
 	}
 	scrollMove(distance: number) {
 		if (Math.abs(distance) >= this.threshold) {
 			this.move(distance > 0 ? 1 : -1);
-			this.startX = 0;
+			this.startCoord = 0;
 		}
 	}
 
@@ -126,15 +156,19 @@ export class Carousel {
 		this.setPixelOffset(this.currentOffset * this.getOffsetValue());
 	}
 	getOffsetValue() {
-		return (
-			(this.el.querySelector(".container") as HTMLElement).offsetWidth /
-			this.getCards().length
-		);
+		let container: HTMLElement = this.el.querySelector(".container");
+		let totalOffset: number = 0;
+		if (this.isVerticalContainer()) {
+			totalOffset = container.offsetHeight;
+		} else {
+			totalOffset = container.offsetWidth;
+		}
+		return totalOffset / this.getCards().length;
 	}
 	setPixelOffset(pixelOffset: number) {
-		(
-			this.el.querySelector(".container") as HTMLElement
-		).style.transform = `translateX(${pixelOffset}px)`;
+		let container: HTMLElement = this.el.querySelector(".container");
+		let dir: string = this.isVertical(container) ? "Y" : "X";
+		container.style.transform = `translate${dir}(${pixelOffset}px)`;
 	}
 
 	// get element nodelists
@@ -210,14 +244,14 @@ export class Carousels {
 			carousel.onResize();
 		}
 	}
-	getFromHTML(carouselEl: HTMLElement) {
-		for (let carousel of this.carousels) {
-			if (carousel.el == carouselEl) {
-				return carousel;
-			}
-		}
-	}
-	moveFromHTML(carouselEl: HTMLElement, modifier: number) {
-		this.getFromHTML(carouselEl).move(modifier);
-	}
+	// getFromHTML(carouselEl: HTMLElement) {
+	// 	for (let carousel of this.carousels) {
+	// 		if (carousel.el == carouselEl) {
+	// 			return carousel;
+	// 		}
+	// 	}
+	// }
+	// moveFromHTML(carouselEl: HTMLElement, modifier: number) {
+	// 	this.getFromHTML(carouselEl).move(modifier);
+	// }
 }

@@ -2,12 +2,17 @@ export class Carousel {
     constructor(el) {
         this.el = el;
         this.currentOffset = 0;
-        this.startX = 0;
+        this.startCoord = 0;
         const middle = Math.ceil(this.getCards().length / 2 - 1);
         if (window.innerWidth > 576) {
-            this.activeIndex = middle;
-            if (this.getCards().length % 2 == 0) {
-                this.offset(-0.5);
+            if (this.isVerticalContainer()) {
+                this.activeIndex = 0;
+            }
+            else {
+                this.activeIndex = middle;
+                if (this.getCards().length % 2 == 0) {
+                    this.offset(-0.5);
+                }
             }
             this.threshold = 80;
         }
@@ -63,29 +68,53 @@ export class Carousel {
             this.handleTouchEnd(event);
         });
     }
+    isVertical(el) {
+        return window.getComputedStyle(el).flexDirection == "column";
+    }
+    isVerticalContainer() {
+        let container = this.el.querySelector(".container");
+        return this.isVertical(container);
+    }
     // handle scroll
     handleTouchStart(event) {
-        this.startX = event.touches[0].clientX;
+        if (this.isVerticalContainer()) {
+            this.startCoord = event.touches[0].clientY;
+        }
+        else {
+            this.startCoord = event.touches[0].clientX;
+        }
     }
     handleTouchMove(event) {
         event.preventDefault();
     }
     handleTouchEnd(event) {
-        const endX = event.changedTouches[0].clientX;
-        const delta = this.startX - endX;
+        let endCoord = 0;
+        if (this.isVerticalContainer()) {
+            endCoord = event.changedTouches[0].clientY;
+        }
+        else {
+            endCoord = event.changedTouches[0].clientX;
+        }
+        let delta = this.startCoord - endCoord;
         this.scrollMove(delta);
     }
     handleScroll(event) {
-        if (event.deltaX != 0) {
+        if ((this.isVerticalContainer() && event.deltaY != 0) ||
+            event.deltaX != 0) {
             event.preventDefault();
         }
-        this.startX += event.deltaX;
-        this.scrollMove(this.startX);
+        if (this.isVerticalContainer()) {
+            this.startCoord += event.deltaY;
+        }
+        else {
+            this.startCoord += event.deltaX;
+        }
+        this.scrollMove(this.startCoord);
     }
     scrollMove(distance) {
         if (Math.abs(distance) >= this.threshold) {
             this.move(distance > 0 ? 1 : -1);
-            this.startX = 0;
+            this.startCoord = 0;
         }
     }
     // carousel functionality
@@ -108,11 +137,20 @@ export class Carousel {
         this.setPixelOffset(this.currentOffset * this.getOffsetValue());
     }
     getOffsetValue() {
-        return (this.el.querySelector(".container").offsetWidth /
-            this.getCards().length);
+        let container = this.el.querySelector(".container");
+        let totalOffset = 0;
+        if (this.isVerticalContainer()) {
+            totalOffset = container.offsetHeight;
+        }
+        else {
+            totalOffset = container.offsetWidth;
+        }
+        return totalOffset / this.getCards().length;
     }
     setPixelOffset(pixelOffset) {
-        this.el.querySelector(".container").style.transform = `translateX(${pixelOffset}px)`;
+        let container = this.el.querySelector(".container");
+        let dir = this.isVertical(container) ? "Y" : "X";
+        container.style.transform = `translate${dir}(${pixelOffset}px)`;
     }
     // get element nodelists
     getCards() {
@@ -173,15 +211,5 @@ export class Carousels {
         for (let carousel of this.carousels) {
             carousel.onResize();
         }
-    }
-    getFromHTML(carouselEl) {
-        for (let carousel of this.carousels) {
-            if (carousel.el == carouselEl) {
-                return carousel;
-            }
-        }
-    }
-    moveFromHTML(carouselEl, modifier) {
-        this.getFromHTML(carouselEl).move(modifier);
     }
 }
