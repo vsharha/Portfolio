@@ -274,10 +274,10 @@ p {
 
 .carousel {
 	width: 100%;
-	overflow: hidden;
 }
 
-.carousel * {
+.carousel *,
+#portfolio .info {
 	transition: all 0.5s ease;
 }
 
@@ -324,6 +324,7 @@ p {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin-bottom: 1rem;
 }
 
 .indicator {
@@ -426,6 +427,26 @@ button:active {
 	margin: 0;
 	font-size: 1.25rem;
 	color: rgb(187, 187, 187);
+}
+
+#portfolio {
+	position: relative;
+	overflow: visible;
+}
+
+#portfolio .info {
+	font-size: 1.4rem;
+	width: 80%;
+	/* position: absolute;
+	left: 0;
+	right: 0; */
+	margin: auto;
+	text-align: justify;
+}
+
+#portfolio .info.inactive {
+	transform: translateY(100vh);
+	height: 0;
 }
 
 .desc {

@@ -1,22 +1,30 @@
 export class Carousel {
 	el: HTMLElement;
+	container: HTMLElement;
 	currentOffset: number;
 	startCoord: number;
 	threshold: number;
 	activeIndex: number;
 
+	containerEl: HTMLElement;
+	cardEls: NodeListOf<HTMLElement>;
+	indicatorEls: NodeListOf<HTMLElement>;
+	infoEls: NodeListOf<HTMLElement>;
+
 	constructor(el: HTMLElement) {
 		this.el = el;
 		this.currentOffset = 0;
 		this.startCoord = 0;
+		this.container = this.el.querySelector(".container");
+		this.cardEls = this.container.querySelectorAll(".card");
 
-		const middle: number = Math.ceil(this.getCards().length / 2 - 1);
+		const middle: number = Math.ceil(this.cardEls.length / 2 - 1);
 		if (window.innerWidth > 576) {
 			if (this.isVerticalContainer()) {
 				this.activeIndex = 0;
 			} else {
 				this.activeIndex = middle;
-				if (this.getCards().length % 2 == 0) {
+				if (this.cardEls.length % 2 == 0) {
 					this.offset(-0.5);
 				}
 			}
@@ -26,7 +34,7 @@ export class Carousel {
 			this.threshold = 30;
 		}
 
-		for (let card of this.getCards()) {
+		for (let card of this.cardEls) {
 			if (card != this.activeCard()) {
 				card.classList.add("inactive");
 			}
@@ -35,7 +43,7 @@ export class Carousel {
 			});
 		}
 
-		const buttons = this.el.querySelectorAll(".nav-buttons button");
+		let buttons = this.el.querySelectorAll(".nav-buttons button");
 
 		if (buttons.length > 0) {
 			buttons[0].classList.add("left");
@@ -50,7 +58,7 @@ export class Carousel {
 		let indicatorBar = document.createElement("div");
 		indicatorBar.classList.add("indicator-bar");
 
-		for (let i = 0; i < this.getCards().length; i++) {
+		for (let i = 0; i < this.cardEls.length; i++) {
 			let indicator = document.createElement("div");
 			indicator.classList.add("indicator");
 			let dot = document.createElement("div");
@@ -65,8 +73,8 @@ export class Carousel {
 
 			indicatorBar.appendChild(indicator);
 		}
-
 		this.el.appendChild(indicatorBar);
+		this.indicatorEls = this.el.querySelectorAll(".indicator");
 
 		let container = this.el.querySelector(".container");
 		container.addEventListener("wheel", (event: WheelEvent) => {
@@ -81,6 +89,30 @@ export class Carousel {
 		container.addEventListener("touchend", (event: TouchEvent) => {
 			this.handleTouchEnd(event);
 		});
+
+		this.infoEls = document.querySelectorAll("#portfolio .info");
+
+		for (let cardEl of this.cardEls) {
+			let infoEl: HTMLElement;
+			for (let info of this.infoEls) {
+				if (info.parentNode == cardEl) {
+					infoEl = info;
+				}
+			}
+
+			if (infoEl == undefined) {
+				infoEl = document.createElement("p");
+				infoEl.classList.add("info");
+			}
+
+			if (cardEl != this.activeCard()) {
+				infoEl.classList.add("inactive");
+			}
+
+			this.el.appendChild(infoEl);
+		}
+
+		this.infoEls = document.querySelectorAll("#portfolio .info");
 	}
 
 	isVertical(el: HTMLElement) {
@@ -139,7 +171,7 @@ export class Carousel {
 	move(modifier: number) {
 		let newIndex = this.activeIndex + modifier;
 
-		if (!(newIndex < 0 || newIndex > this.getCards().length - 1)) {
+		if (!(newIndex < 0 || newIndex > this.cardEls.length - 1)) {
 			this.updateIndex(newIndex);
 			this.offset(modifier);
 		}
@@ -147,9 +179,11 @@ export class Carousel {
 	updateIndex(index: number) {
 		this.activeCard().classList.add("inactive");
 		this.activeDot().classList.add("inactive");
+		this.activeInfo().classList.add("inactive");
 		this.activeIndex = index;
 		this.activeCard().classList.remove("inactive");
 		this.activeDot().classList.remove("inactive");
+		this.activeInfo().classList.remove("inactive");
 	}
 	offset(modifier: number) {
 		this.currentOffset -= modifier;
@@ -163,7 +197,7 @@ export class Carousel {
 		} else {
 			totalOffset = container.offsetWidth;
 		}
-		return totalOffset / this.getCards().length;
+		return totalOffset / this.indicatorEls.length;
 	}
 	setPixelOffset(pixelOffset: number) {
 		let container: HTMLElement = this.el.querySelector(".container");
@@ -172,25 +206,22 @@ export class Carousel {
 	}
 
 	// get element nodelists
-	getCards() {
-		return this.el.querySelectorAll(".container .card");
-	}
-	getIndicators() {
-		return this.el.querySelectorAll(".indicator");
-	}
 	activeDot() {
-		return this.getIndicators()[this.activeIndex].firstChild as HTMLElement;
+		return this.indicatorEls[this.activeIndex].firstChild as HTMLElement;
 	}
 	activeCard() {
-		return this.getCards()[this.activeIndex];
+		return this.cardEls[this.activeIndex];
+	}
+	activeInfo() {
+		return this.infoEls[this.activeIndex];
 	}
 
 	getIndex(element: HTMLElement) {
 		let elements: NodeListOf<HTMLElement>;
 		if (element.classList.contains("card")) {
-			elements = this.getCards() as NodeListOf<HTMLElement>;
+			elements = this.cardEls;
 		} else if (element.classList.contains("indicator")) {
-			elements = this.getIndicators() as NodeListOf<HTMLElement>;
+			elements = this.indicatorEls;
 		}
 
 		for (let i = 0; i < elements.length; i++) {

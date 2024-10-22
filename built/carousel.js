@@ -3,14 +3,16 @@ export class Carousel {
         this.el = el;
         this.currentOffset = 0;
         this.startCoord = 0;
-        const middle = Math.ceil(this.getCards().length / 2 - 1);
+        this.container = this.el.querySelector(".container");
+        this.cardEls = this.container.querySelectorAll(".card");
+        const middle = Math.ceil(this.cardEls.length / 2 - 1);
         if (window.innerWidth > 576) {
             if (this.isVerticalContainer()) {
                 this.activeIndex = 0;
             }
             else {
                 this.activeIndex = middle;
-                if (this.getCards().length % 2 == 0) {
+                if (this.cardEls.length % 2 == 0) {
                     this.offset(-0.5);
                 }
             }
@@ -20,7 +22,7 @@ export class Carousel {
             this.activeIndex = 0;
             this.threshold = 30;
         }
-        for (let card of this.getCards()) {
+        for (let card of this.cardEls) {
             if (card != this.activeCard()) {
                 card.classList.add("inactive");
             }
@@ -28,7 +30,7 @@ export class Carousel {
                 this.processInput(event.currentTarget);
             });
         }
-        const buttons = this.el.querySelectorAll(".nav-buttons button");
+        let buttons = this.el.querySelectorAll(".nav-buttons button");
         if (buttons.length > 0) {
             buttons[0].classList.add("left");
             for (let button of buttons) {
@@ -39,7 +41,7 @@ export class Carousel {
         }
         let indicatorBar = document.createElement("div");
         indicatorBar.classList.add("indicator-bar");
-        for (let i = 0; i < this.getCards().length; i++) {
+        for (let i = 0; i < this.cardEls.length; i++) {
             let indicator = document.createElement("div");
             indicator.classList.add("indicator");
             let dot = document.createElement("div");
@@ -54,6 +56,7 @@ export class Carousel {
             indicatorBar.appendChild(indicator);
         }
         this.el.appendChild(indicatorBar);
+        this.indicatorEls = this.el.querySelectorAll(".indicator");
         let container = this.el.querySelector(".container");
         container.addEventListener("wheel", (event) => {
             this.handleScroll(event);
@@ -67,6 +70,24 @@ export class Carousel {
         container.addEventListener("touchend", (event) => {
             this.handleTouchEnd(event);
         });
+        this.infoEls = document.querySelectorAll("#portfolio .info");
+        for (let cardEl of this.cardEls) {
+            let infoEl;
+            for (let info of this.infoEls) {
+                if (info.parentNode == cardEl) {
+                    infoEl = info;
+                }
+            }
+            if (infoEl == undefined) {
+                infoEl = document.createElement("p");
+                infoEl.classList.add("info");
+            }
+            if (cardEl != this.activeCard()) {
+                infoEl.classList.add("inactive");
+            }
+            this.el.appendChild(infoEl);
+        }
+        this.infoEls = document.querySelectorAll("#portfolio .info");
     }
     isVertical(el) {
         return window.getComputedStyle(el).flexDirection == "column";
@@ -120,7 +141,7 @@ export class Carousel {
     // carousel functionality
     move(modifier) {
         let newIndex = this.activeIndex + modifier;
-        if (!(newIndex < 0 || newIndex > this.getCards().length - 1)) {
+        if (!(newIndex < 0 || newIndex > this.cardEls.length - 1)) {
             this.updateIndex(newIndex);
             this.offset(modifier);
         }
@@ -128,9 +149,11 @@ export class Carousel {
     updateIndex(index) {
         this.activeCard().classList.add("inactive");
         this.activeDot().classList.add("inactive");
+        this.activeInfo().classList.add("inactive");
         this.activeIndex = index;
         this.activeCard().classList.remove("inactive");
         this.activeDot().classList.remove("inactive");
+        this.activeInfo().classList.remove("inactive");
     }
     offset(modifier) {
         this.currentOffset -= modifier;
@@ -145,7 +168,7 @@ export class Carousel {
         else {
             totalOffset = container.offsetWidth;
         }
-        return totalOffset / this.getCards().length;
+        return totalOffset / this.indicatorEls.length;
     }
     setPixelOffset(pixelOffset) {
         let container = this.el.querySelector(".container");
@@ -153,25 +176,22 @@ export class Carousel {
         container.style.transform = `translate${dir}(${pixelOffset}px)`;
     }
     // get element nodelists
-    getCards() {
-        return this.el.querySelectorAll(".container .card");
-    }
-    getIndicators() {
-        return this.el.querySelectorAll(".indicator");
-    }
     activeDot() {
-        return this.getIndicators()[this.activeIndex].firstChild;
+        return this.indicatorEls[this.activeIndex].firstChild;
     }
     activeCard() {
-        return this.getCards()[this.activeIndex];
+        return this.cardEls[this.activeIndex];
+    }
+    activeInfo() {
+        return this.infoEls[this.activeIndex];
     }
     getIndex(element) {
         let elements;
         if (element.classList.contains("card")) {
-            elements = this.getCards();
+            elements = this.cardEls;
         }
         else if (element.classList.contains("indicator")) {
-            elements = this.getIndicators();
+            elements = this.indicatorEls;
         }
         for (let i = 0; i < elements.length; i++) {
             if (elements[i] == element) {
