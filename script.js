@@ -65,13 +65,18 @@ class Carousel {
 		container.addEventListener("touchstart", (event) => {
 			this.handleTouchStart(event);
 		});
+		container.addEventListener("touchmove", (event) => {
+			this.handleTouchMove(event);
+		});
 		container.addEventListener("touchend", (event) => {
 			this.handleTouchEnd(event);
 		});
 	}
 	handleTouchStart(event) {
-		event.preventDefault();
 		this.startX = event.touches[0].clientX;
+	}
+	handleTouchMove(event) {
+		event.preventDefault();
 	}
 	handleTouchEnd(event) {
 		const endX = event.changedTouches[0].clientX;
@@ -79,8 +84,6 @@ class Carousel {
 		this.scrollMove(delta);
 	}
 	handleScroll(event) {
-		// event.preventDefault();
-
 		this.startX += event.deltaX;
 		this.scrollMove(this.startX);
 	}
