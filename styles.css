@@ -74,10 +74,16 @@ button:hover,
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	text-align: center;
 
-	font-size: 4rem;
+	--height: 4rem;
+	font-size: var(--height);
 }
 
+#socials #links a {
+	aspect-ratio: 1/1;
+	width: var(--height);
+}
 #socials #links a,
 #socials #links a:visited {
 	color: var(--secondary);
@@ -540,15 +546,15 @@ article p {
 
 	#socials {
 		scale: 1;
+
+		scale: 90%;
+		margin: 0.25rem;
+		bottom: 0.5rem;
 	}
 
 	#socials #links {
 		flex-direction: row;
 		gap: 1rem;
-		scale: 90%;
-		margin: 0.5rem;
-		left: 0rem;
-		bottom: 0.5rem;
 	}
 
 	#scroll {
