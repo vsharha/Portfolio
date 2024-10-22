@@ -16,7 +16,7 @@ class Carousel {
 			if (this.getCards().length % 2 == 0) {
 				this.offset(-0.5);
 			}
-			this.threshold = 50;
+			this.threshold = 80;
 		} else {
 			this.activeIndex = 0;
 			this.threshold = 30;
@@ -64,11 +64,10 @@ class Carousel {
 
 		this.el.appendChild(indicatorBar);
 
-		this.el.addEventListener("wheel", (event) => {
+		let container = this.el.querySelector(".container");
+		container.addEventListener("wheel", (event: WheelEvent) => {
 			this.handleScroll(event);
 		});
-
-		let container = this.el.querySelector(".container");
 		container.addEventListener("touchstart", (event: TouchEvent) => {
 			this.handleTouchStart(event);
 		});
@@ -91,6 +90,9 @@ class Carousel {
 		this.scrollMove(delta);
 	}
 	handleScroll(event: WheelEvent) {
+		if (event.deltaX != 0) {
+			event.preventDefault();
+		}
 		this.startX += event.deltaX;
 		this.scrollMove(this.startX);
 	}
