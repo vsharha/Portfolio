@@ -52,7 +52,7 @@ section {
 
 button:hover,
 /* nav ol a:hover, */
-#socials #links a:hover {
+#socials a:hover {
 	filter: brightness(85%);
 }
 
