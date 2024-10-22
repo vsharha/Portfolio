@@ -95,11 +95,12 @@ button:hover,
 }
 
 #socials #links p {
+	font-family: "Nanum Gothic Coding", monospace;
 	position: absolute;
 	bottom: 1rem;
 	left: 1.14rem;
-	font-size: 1.25rem;
-	font-weight: 900;
+	font-size: 1.7rem;
+	font-weight: 1000;
 
 	text-align: center;
 }
