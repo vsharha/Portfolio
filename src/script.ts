@@ -10,7 +10,7 @@ class Carousel {
 		this.currentOffset = 0;
 		this.startX = 0;
 
-		let middle: number = Math.ceil(this.getCards().length / 2 - 1);
+		const middle: number = Math.ceil(this.getCards().length / 2 - 1);
 		if (window.innerWidth > 576) {
 			this.activeIndex = middle;
 			if (this.getCards().length % 2 == 0) {
@@ -31,7 +31,7 @@ class Carousel {
 			});
 		}
 
-		let buttons = this.el.querySelectorAll(".nav-buttons button");
+		const buttons = this.el.querySelectorAll(".nav-buttons button");
 
 		if (buttons.length > 0) {
 			buttons[0].classList.add("left");
@@ -117,8 +117,7 @@ class Carousel {
 	}
 	offset(modifier: number) {
 		this.currentOffset -= modifier;
-		let offsetValue = this.getOffsetValue();
-		this.setPixelOffset(this.currentOffset * offsetValue);
+		this.setPixelOffset(this.currentOffset * this.getOffsetValue());
 	}
 	getOffsetValue() {
 		return (
