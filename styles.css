@@ -58,20 +58,21 @@ button:hover,
 
 #socials {
 	z-index: 1;
-	scale: 0.85;
+	scale: 0.75;
 	position: fixed;
 
-	padding: 0.4rem 1rem;
+	padding: 0.7rem 1rem;
 	background: rgb(44, 57, 120);
 	border-radius: 2rem;
 
-	margin: 1rem;
-	bottom: 0px;
+	left: -0.75rem;
+	bottom: 0.5rem;
 }
 
 #socials #links {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	gap: 0.5rem;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
@@ -81,7 +82,9 @@ button:hover,
 }
 
 #socials #links a {
+	position: relative;
 	aspect-ratio: 1/1;
+	text-align: center;
 	width: var(--height);
 }
 #socials #links a,
@@ -92,13 +95,20 @@ button:hover,
 }
 
 #socials #links p {
+	position: absolute;
+	bottom: 1rem;
+	left: 1.14rem;
+	font-size: 1.25rem;
+	font-weight: 900;
+
 	text-align: center;
 }
 
 #pointer {
+	scale: 0.75;
 	position: absolute;
-	bottom: 8rem;
-	left: 8rem;
+	bottom: 1.2rem;
+	left: 13rem;
 }
 
 #pointer p {
@@ -110,7 +120,7 @@ button:hover,
 
 #pointer i {
 	font-size: 2rem;
-	rotate: 180deg;
+	rotate: 190deg;
 }
 
 /* ABOUT */
@@ -473,8 +483,9 @@ article p {
 		margin-bottom: 0;
 	}
 	#pointer {
-		bottom: 1.5rem;
-		left: 11.5rem;
+		scale: 1;
+		bottom: 1.4rem;
+		left: 12.5rem;
 	}
 	#pointer p {
 		font-size: 2.2rem;
@@ -545,16 +556,9 @@ article p {
 	}
 
 	#socials {
-		scale: 1;
-
-		scale: 90%;
-		margin: 0.25rem;
-		bottom: 0.5rem;
-	}
-
-	#socials #links {
-		flex-direction: row;
-		gap: 1rem;
+		scale: 70%;
+		left: -1.5rem;
+		bottom: 0rem;
 	}
 
 	#scroll {
