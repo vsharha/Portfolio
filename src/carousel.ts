@@ -210,7 +210,6 @@ export class Carousel {
 	processInput(el: HTMLElement) {
 		let modifier = 0;
 
-		console.log(el);
 		if (
 			el.classList.contains("card") ||
 			el.classList.contains("indicator")
@@ -236,7 +235,7 @@ export class Carousels {
 			this.carousels.push(new Carousel(carouselEl));
 		}
 
-		window.onresize = this.onResize;
+		window.onresize = this.onResize.bind(this);
 	}
 
 	onResize() {

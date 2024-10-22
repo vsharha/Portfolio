@@ -188,7 +188,6 @@ export class Carousel {
     }
     processInput(el) {
         let modifier = 0;
-        console.log(el);
         if (el.classList.contains("card") ||
             el.classList.contains("indicator")) {
             modifier = this.getIndex(el) - this.activeIndex;
@@ -205,7 +204,7 @@ export class Carousels {
         for (let carouselEl of document.querySelectorAll(".carousel")) {
             this.carousels.push(new Carousel(carouselEl));
         }
-        window.onresize = this.onResize;
+        window.onresize = this.onResize.bind(this);
     }
     onResize() {
         for (let carousel of this.carousels) {
