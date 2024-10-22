@@ -72,6 +72,8 @@ export class Carousel {
 			this.handleTouchEnd(event);
 		});
 	}
+
+	// handle scroll
 	handleTouchStart(event: TouchEvent) {
 		this.startX = event.touches[0].clientX;
 	}
@@ -96,6 +98,8 @@ export class Carousel {
 			this.startX = 0;
 		}
 	}
+
+	// carousel functionality
 	move(modifier: number) {
 		let newIndex = this.activeIndex + modifier;
 
@@ -126,6 +130,8 @@ export class Carousel {
 			this.el.querySelector(".container") as HTMLElement
 		).style.transform = `translateX(${pixelOffset}px)`;
 	}
+
+	// get element nodelists
 	getCards() {
 		return this.el.querySelectorAll(".container .card");
 	}
@@ -154,13 +160,13 @@ export class Carousel {
 		}
 	}
 
+	// general functionality
 	onResize() {
 		let offset = this.currentOffset;
 		this.offset(-offset);
 		this.setPixelOffset(0);
 		this.offset(offset);
 	}
-
 	processInput(el: HTMLElement) {
 		let modifier = 0;
 

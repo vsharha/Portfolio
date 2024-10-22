@@ -60,6 +60,12 @@ button:hover,
 	z-index: 1;
 	scale: 0.85;
 	position: fixed;
+
+	padding: 0.4rem 1rem;
+	background: rgb(44, 57, 120);
+	border-radius: 2rem;
+
+	margin: 1rem;
 	bottom: 0px;
 }
 
@@ -69,18 +75,18 @@ button:hover,
 	justify-content: center;
 	align-items: center;
 
-	margin: 1rem;
 	font-size: 4rem;
-
-	background: rgb(44, 57, 120);
-
-	padding: 0.4rem 1rem;
-	border-radius: 2rem;
 }
 
 #socials #links a,
 #socials #links a:visited {
 	color: var(--secondary);
+
+	text-decoration: none;
+}
+
+#socials #links p {
+	text-align: center;
 }
 
 #pointer {
