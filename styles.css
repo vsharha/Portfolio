@@ -273,6 +273,7 @@ p {
 /* CAROUSEL */
 
 .carousel {
+	overflow: hidden;
 	width: 100%;
 }
 

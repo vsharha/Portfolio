@@ -160,14 +160,14 @@ export class Carousel {
         this.setPixelOffset(this.currentOffset * this.getOffsetValue());
     }
     getOffsetValue() {
-        let container = this.el.querySelector(".container");
         let totalOffset = 0;
         if (this.isVerticalContainer()) {
-            totalOffset = container.offsetHeight;
+            totalOffset = this.container.offsetHeight;
         }
         else {
-            totalOffset = container.offsetWidth;
+            totalOffset = this.container.offsetWidth;
         }
+        console.log(totalOffset);
         return totalOffset / this.indicatorEls.length;
     }
     setPixelOffset(pixelOffset) {
