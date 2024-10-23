@@ -5,23 +5,6 @@ export class Carousel {
         this.startCoord = 0;
         this.container = this.el.querySelector(".container");
         this.cardEls = this.container.querySelectorAll(".card");
-        const middle = Math.ceil(this.cardEls.length / 2 - 1);
-        if (window.innerWidth > 576) {
-            if (this.isVerticalContainer()) {
-                this.activeIndex = 0;
-            }
-            else {
-                this.activeIndex = middle;
-                if (this.cardEls.length % 2 == 0) {
-                    this.offset(-0.5);
-                }
-            }
-            this.threshold = 80;
-        }
-        else {
-            this.activeIndex = 0;
-            this.threshold = 30;
-        }
         for (let card of this.cardEls) {
             if (card != this.activeCard()) {
                 card.classList.add("inactive");
@@ -88,6 +71,25 @@ export class Carousel {
             this.el.appendChild(infoEl);
         }
         this.infoEls = document.querySelectorAll("#portfolio .info");
+        this.activeIndex = 0;
+        const middle = Math.ceil(this.cardEls.length / 2 - 1);
+        if (window.innerWidth > 576) {
+            if (this.isVerticalContainer()) {
+                this.updateIndex(0);
+            }
+            else {
+                this.updateIndex(middle);
+                if (this.cardEls.length % 2 == 0) {
+                    this.offset(-0.5);
+                }
+            }
+            this.threshold = 80;
+        }
+        else {
+            this.threshold = 30;
+            this.updateIndex(0);
+            this.offset(-middle);
+        }
     }
     isVertical(el) {
         return window.getComputedStyle(el).flexDirection == "column";
@@ -162,13 +164,13 @@ export class Carousel {
     getOffsetValue() {
         let totalOffset = 0;
         if (this.isVerticalContainer()) {
-            totalOffset = this.container.offsetHeight;
+            totalOffset = this.activeCard().offsetHeight;
         }
         else {
-            totalOffset = this.container.offsetWidth;
+            totalOffset = this.activeCard().offsetWidth;
         }
-        console.log(totalOffset);
-        return totalOffset / this.indicatorEls.length;
+        // console.log(totalOffset);
+        return totalOffset;
     }
     setPixelOffset(pixelOffset) {
         let container = this.el.querySelector(".container");
