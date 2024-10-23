@@ -284,12 +284,13 @@ p {
 
 .carousel .container {
 	--gap: 1rem;
-	gap: var(--gap);
+	gap: 0;
 	padding: 0 var(--gap);
 	flex-wrap: nowrap;
 }
 
 .carousel .card {
+	margin: var(--gap) / 2;
 	opacity: 1;
 	width: 50vw;
 }

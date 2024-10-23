@@ -163,6 +163,8 @@ export class Carousel {
     }
     getOffsetValue() {
         let totalOffset = 0;
+        let gap = this.container.style.gap;
+        console.log(gap);
         if (this.isVerticalContainer()) {
             totalOffset = this.activeCard().offsetHeight;
         }
