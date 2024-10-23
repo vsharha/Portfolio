@@ -103,9 +103,9 @@ button:hover,
 	font-family: "Nanum Gothic Coding", monospace;
 	position: absolute;
 	bottom: 1rem;
-	left: 1.15rem;
 	font-size: 1.7rem;
 	font-weight: 1000;
+	width: 100%;
 
 	text-align: center;
 }
