@@ -108,7 +108,7 @@ export class Carousel {
         }
     }
     handleTouchMove(event) {
-        event.preventDefault();
+        // event.preventDefault();
     }
     handleTouchEnd(event) {
         let endCoord = 0;
@@ -163,8 +163,6 @@ export class Carousel {
     }
     getOffsetValue() {
         let totalOffset = 0;
-        let gap = this.container.style.gap;
-        console.log(gap);
         if (this.isVerticalContainer()) {
             totalOffset = this.activeCard().offsetHeight;
         }

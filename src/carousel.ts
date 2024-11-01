@@ -135,7 +135,7 @@ export class Carousel {
 		}
 	}
 	handleTouchMove(event: TouchEvent) {
-		event.preventDefault();
+		// event.preventDefault();
 	}
 	handleTouchEnd(event: TouchEvent) {
 		let endCoord = 0;
