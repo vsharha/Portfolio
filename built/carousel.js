@@ -90,6 +90,9 @@ export class Carousel {
             this.updateIndex(0);
             this.offset(-middle);
         }
+        document.addEventListener("keydown", (event) => {
+            this.handleKeyPress(event);
+        });
     }
     isVertical(el) {
         return window.getComputedStyle(el).flexDirection == "column";
@@ -97,6 +100,16 @@ export class Carousel {
     isVerticalContainer() {
         let container = this.el.querySelector(".container");
         return this.isVertical(container);
+    }
+    handleKeyPress(event) {
+        switch (event.key) {
+            case "ArrowLeft":
+                this.move(-1);
+                break;
+            case "ArrowRight":
+                this.move(1);
+                break;
+        }
     }
     // handle scroll
     handleTouchStart(event) {

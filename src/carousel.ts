@@ -115,6 +115,9 @@ export class Carousel {
 			this.updateIndex(0);
 			this.offset(-middle);
 		}
+		document.addEventListener("keydown", (event: KeyboardEvent) => {
+			this.handleKeyPress(event);
+		});
 	}
 
 	isVertical(el: HTMLElement) {
@@ -126,6 +129,16 @@ export class Carousel {
 		return this.isVertical(container);
 	}
 
+	handleKeyPress(event: KeyboardEvent) {
+		switch (event.key) {
+			case "ArrowLeft":
+				this.move(-1);
+				break;
+			case "ArrowRight":
+				this.move(1);
+				break;
+		}
+	}
 	// handle scroll
 	handleTouchStart(event: TouchEvent) {
 		if (this.isVerticalContainer()) {
