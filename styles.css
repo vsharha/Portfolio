@@ -386,7 +386,7 @@ button:active {
 
 #skills .container {
 	--gap: 1rem;
-	--items: 5;
+	--items: 6;
 }
 
 #skills .card {
