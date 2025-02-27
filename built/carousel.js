@@ -88,7 +88,7 @@ export class Carousel {
         else {
             this.threshold = 30;
             this.updateIndex(0);
-            this.offset(-middle);
+            this.offset(-middle / 2 + 1);
         }
         document.addEventListener("keydown", (event) => {
             this.handleKeyPress(event);
