@@ -11,7 +11,6 @@
 	--primary: rgb(27, 36, 80);
 	--secondary: white;
 	--background-color: linear-gradient(rgb(34, 46, 102), rgb(20, 28, 60));
-	--padding: 0rem 10%;
 }
 
 html {
@@ -157,8 +156,6 @@ button:hover,
 	flex-direction: row;
 	justify-content: center;
 	gap: 4rem;
-
-	padding: var(--padding);
 }
 
 #about-text {
@@ -498,9 +495,6 @@ article p {
 }
 
 @media screen and (max-width: 576px) {
-	:root {
-		--padding: 0;
-	}
 	#about {
 		padding: 0;
 		display: flex;
@@ -628,6 +622,7 @@ article p {
 	}
 
 	#scroll {
+		display: none;
 		scale: 75%;
 		bottom: 10%;
 	}
