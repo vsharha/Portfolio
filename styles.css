@@ -146,11 +146,40 @@ button:hover,
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	padding: var(--padding);
 }
 
 #about * {
 	text-align: left;
+}
+
+#about-content {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 4rem;
+
+	padding: var(--padding);
+}
+
+#about-text {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: left;
+	gap: 1rem;
+}
+
+#about-img {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#about-img img {
+	border-radius: 100%;
+
+	aspect-ratio: 1/1;
+	width: 60%;
 }
 
 h1 {
@@ -469,6 +498,14 @@ article p {
 }
 
 @media screen and (max-width: 576px) {
+	:root {
+		--padding: 0;
+	}
+	#about {
+		padding: 0;
+		display: flex;
+		justify-content: flex-start;
+	}
 	nav {
 		display: none;
 	}
@@ -485,9 +522,6 @@ article p {
 		margin-top: 0rem;
 		padding: 0 2rem;
 		text-align: left;
-	}
-	#about {
-		padding: 0px 5%;
 	}
 	.title {
 		scale: 1;
@@ -507,7 +541,7 @@ article p {
 		font-size: 1.5rem;
 		rotate: 190deg;
 	}
-	*/ .carousel .container {
+	.carousel .container {
 		width: min-content;
 	}
 	.carousel .card {
@@ -557,15 +591,34 @@ article p {
 		font-size: 1.5rem;
 	}
 
-	#about {
-		justify-content: left;
-		padding-top: 40%;
-	}
 	#about h2 {
-		font-size: 2rem;
+		font-size: 1.8rem;
 	}
 	#about h1 {
-		font-size: 5rem;
+		font-size: 4rem;
+	}
+
+	#about-content {
+		display: flex;
+		gap: 2rem;
+		padding: 15% 5%;
+		padding-bottom: 30%;
+
+		flex-direction: column;
+		justify-content: flex-start;
+	}
+
+	#about-img {
+		order: 1;
+	}
+
+	#about-img img {
+		width: 80%;
+	}
+
+	#about-text {
+		gap: 0rem;
+		order: 2;
 	}
 
 	#socials {
@@ -576,7 +629,7 @@ article p {
 
 	#scroll {
 		scale: 75%;
-		bottom: 15%;
+		bottom: 10%;
 	}
 	#scroll-anim {
 		animation-duration: 2s;
