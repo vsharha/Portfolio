@@ -156,6 +156,7 @@ button:hover,
 	flex-direction: row;
 	justify-content: center;
 	gap: 4rem;
+	padding: 0% 15%;
 }
 
 #about-text {
@@ -595,15 +596,11 @@ article p {
 	#about-content {
 		display: flex;
 		gap: 2rem;
-		padding: 15% 5%;
+		padding: 5% 5%;
 		padding-bottom: 30%;
 
 		flex-direction: column;
 		justify-content: flex-start;
-	}
-
-	#about-img {
-		order: 1;
 	}
 
 	#about-img img {
@@ -612,7 +609,7 @@ article p {
 
 	#about-text {
 		gap: 0rem;
-		order: 2;
+		order: 1;
 	}
 
 	#socials {
